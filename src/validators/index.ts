@@ -8,4 +8,4 @@ export const userSchema = z.object({
                     message: 'Must contain at least one uppercase, one lowercase, one number, and one special character'}),
 })
 
-export type User = z.infer<typeof userSchema>
+export type IUser = z.infer<typeof userSchema>
