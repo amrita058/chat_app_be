@@ -1,15 +1,20 @@
 import mongoose from "mongoose";
-// import { env } from "process";
+import { env } from "./config";
 
-  export const connectDB = async ()=>{
-    console.log(process.env.URI)
-    if(process.env.URI!=undefined){
-      await mongoose.connect(process.env.URI)
-      mongoose.connection.on('open',()=>{
-        console.log("connected")
-      })
+export const connectDB = async () => {
+  if (env.URI != undefined) {
+    try {
+      await mongoose.connect(env.URI);
+    } catch (err: any) {
+      console.log("not connected", err);
     }
-    else{
-        console.log("not connected")
-    }
+    mongoose.connection.on("open", () => {
+      console.log("connection open");
+    });
+    mongoose.connection.on("error", (err) => {
+      console.error("Connection error:", err);
+    });
+  } else {
+    console.log("not connected");
   }
+};

@@ -1,13 +1,15 @@
 import express from "express";
-import routes from "./routes/index"
+import routes from "./routes/index";
 import { connectDB } from "./database";
-import { config } from "dotenv";
+import { env } from "./config";
 
-const app = express()
-config()
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/v1/',routes)
+connectDB();
+app.use("/api/v1/", routes);
 
-connectDB()
-
-app.listen(7000,()=>{console.log("listening at port 7000")})
+app.listen(env.PORT, () => {
+  console.log(`listening at port ${env.PORT}`);
+});

@@ -1,11 +1,7 @@
 import { Router } from "express";
 
+const router = Router();
 
-const router = Router()
+router.get("/");
 
-const routes =()=>{
-    router.get('/',)
-    return routes
-}
-
-export default routes
+export default router;
