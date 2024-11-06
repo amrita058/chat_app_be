@@ -1,6 +1,6 @@
 import Enquirer from "enquirer";
-import { IUser, userSchema } from "./validators";
-import User from "./models/user.model";
+import { IUser, userSchema } from "./validation/user.validation";
+import User from "./entities/user.entity";
 import { config } from "dotenv";
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";

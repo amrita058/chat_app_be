@@ -1,15 +1,23 @@
-import express from "express";
-import routes from "./routes/index";
-import { connectDB } from "./database";
-import { env } from "./config";
+import express, { Express } from "express";
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+import { connectDB, env } from "./config";
+import {
+  initialiseMiddleware,
+  initializeErrorHandler,
+  initializeRoutes,
+} from "./config/express.config";
+
+const app: Express = express();
+const port = env.PORT || 3000;
+
+initialiseMiddleware(app);
 
 connectDB();
-app.use("/api/v1/", routes);
 
-app.listen(env.PORT, () => {
-  console.log(`listening at port ${env.PORT}`);
+initializeRoutes(app);
+
+initializeErrorHandler(app);
+
+app.listen(port, () => {
+  console.log(`[server]: Server is running at http://localhost:${port}`);
 });

@@ -4,6 +4,6 @@ dotenv.config();
 
 export const env = {
   PORT: process.env.PORT,
-  URI: process.env.URI,
+  MONGO_URI: process.env.URI,
   SECRET_KEY: process.env.SECRET_KEY,
 };

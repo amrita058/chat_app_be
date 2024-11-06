@@ -1,4 +1,5 @@
-import * as UserRepository from "../repository/user.repository";
+import User from "../entities/user.entity";
+
 // import { IUser, IItem } from "../Repository/User.types";
 // const bcrypt = require("bcrypt");
 
@@ -20,7 +21,7 @@ import * as UserRepository from "../repository/user.repository";
 
 export const loginUser = async (user: any) => {
   try {
-    const data = await UserRepository.loginUser(user);
+    const data = await User.findOne({ userName: user.userName });
     //   console.log("At service", data);
     //   if (data && (await bcrypt.compare(user.password, data.password))) {
     //     const user = { userName: data.userName, role: data.role };
