@@ -20,8 +20,11 @@ export const initialiseMiddleware = (app: Express) => {
 
 export const initializeRoutes = (app: Express) => {
   //health check api use /health also add timestamp
-  app.get("/", (req: Request, res: Response) => {
-    res.send("Api is running");
+  app.get("/health", (req: Request, res: Response) => {
+    const timestamp = new Date().toISOString();
+    res
+      .status(200)
+      .json({ status: true, timestamp, message: "Api is running" });
   });
 
   app.use("/api/v1", routes);

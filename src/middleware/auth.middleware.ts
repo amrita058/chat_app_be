@@ -12,7 +12,9 @@ export const verifyJwt = (req: Request, res: Response, next: NextFunction) => {
     next(error);
   } else {
     jwt.verify(token, env.SECRET_KEY as string, (err: any, decoded: any) => {
-      if (err) return res.status(403).json("Unauthorized");
+      console.log("err", JSON.stringify(err));
+      if (err)
+        return res.status(403).json({ success: false, message: err.message });
       res.locals.userId = decoded;
       next(); //can directly send user as argument to next
     });

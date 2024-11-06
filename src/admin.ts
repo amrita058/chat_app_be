@@ -1,5 +1,8 @@
 import Enquirer from "enquirer";
-import { IUser, userSchema } from "./validation/user.validation";
+import {
+  IUserLoginParams,
+  UserLoginSchema,
+} from "./validation/user.validation";
 import User from "./entities/user.entity";
 import { config } from "dotenv";
 import mongoose from "mongoose";
@@ -39,13 +42,13 @@ const createAdmin = async () => {
     message: "Enter the email",
   });
 
-  const promptUser: IUser = {
+  const promptUser: IUserLoginParams = {
     userName: (username as any).username,
     email: (email as any).email,
     password: await bcrypt.hash((password as any).password, 10),
   };
 
-  const parsedUser = userSchema.safeParse(promptUser);
+  const parsedUser = UserLoginSchema.safeParse(promptUser);
 
   if (!parsedUser.success) {
     parsedUser.error.issues.forEach((issue) => {
