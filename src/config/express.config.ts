@@ -1,15 +1,9 @@
 import express, { Express, NextFunction, Request, Response } from "express";
 import routes from "../routes";
-import { ErrorHandler } from "../error";
+import { ErrorHandler } from "./error.config";
 import { errorMiddleware } from "../middleware/error.middleware";
 import cors from "cors";
 import morgan from "morgan";
-
-//use in config express
-//url encoded or json which one to use
-//middleware for data validation do not allow to come to controller as well
-//es lint for this project
-//make model as entites
 
 export const initialiseMiddleware = (app: Express) => {
   app.use(cors({ origin: "*" }));
@@ -19,7 +13,6 @@ export const initialiseMiddleware = (app: Express) => {
 };
 
 export const initializeRoutes = (app: Express) => {
-  //health check api use /health also add timestamp
   app.get("/health", (req: Request, res: Response) => {
     const timestamp = new Date().toISOString();
     res

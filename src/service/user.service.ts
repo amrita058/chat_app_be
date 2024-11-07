@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import jwt, { Secret } from "jsonwebtoken";
 import { env } from "../config";
 import User from "../entities/user.entity";
-import { ErrorHandler } from "../error";
+import { ErrorHandler } from "../config/error.config";
 import { IUserRegisterParams } from "../validation/user.validation";
 
 export const loginUser = async (user: any) => {

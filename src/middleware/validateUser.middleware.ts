@@ -1,5 +1,5 @@
 import e, { NextFunction, Request, Response } from "express";
-import { ErrorHandler } from "../error";
+import { ErrorHandler } from "../config/error.config";
 import {
   UserLoginSchema,
   UserRegisterSchema,
