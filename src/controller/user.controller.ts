@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import * as UserService from "../service/user.service";
+import { NextFunction, Request, Response } from 'express'
+import * as UserService from '../service/user.service'
 
 export const loginUser = async (
   req: Request,
@@ -7,13 +7,12 @@ export const loginUser = async (
   next: NextFunction
 ) => {
   try {
-    console.log("at login user controller", req.body);
-    res.status(201).json(await UserService.loginUser(req.body));
+    const response = await UserService.loginUser(req.body)
+    res.status(201).json(response)
   } catch (e: any) {
-    console.log("controller login error", e);
-    next(e);
+    next(e)
   }
-};
+}
 
 export const registerUser = async (
   req: Request,
@@ -21,11 +20,12 @@ export const registerUser = async (
   next: NextFunction
 ) => {
   try {
-    res.status(201).json(await UserService.registerUser(req.body));
+    const response = await UserService.registerUser(req.body)
+    res.status(201).json(response)
   } catch (e) {
-    next(e);
+    next(e)
   }
-};
+}
 
 export const refreshToken = async (
   req: Request,
@@ -33,8 +33,8 @@ export const refreshToken = async (
   next: NextFunction
 ) => {
   try {
-    res.status(201).json(await UserService.refreshToken(req.body.refreshToken));
+    res.status(201).json(await UserService.refreshToken(req.body.refreshToken))
   } catch (e) {
-    next(e);
+    next(e)
   }
-};
+}
